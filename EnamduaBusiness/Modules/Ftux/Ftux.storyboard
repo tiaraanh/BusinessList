@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Ftux View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="Ftux" id="Y6W-OH-hqX" customClass="FtuxViewController" customModule="EnamduaBusiness" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HDx-Fs-d6w">
+                                <rect key="frame" x="40" y="718" width="313" height="60"/>
+                                <color key="backgroundColor" red="1" green="0.6588235294" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="Yqn-Jn-J1S"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Get Started">
+                                    <color key="baseForegroundColor" systemColor="labelColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="getStartedButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="YRK-vD-r14"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Ftux" translatesAutoresizingMaskIntoConstraints="NO" id="4E5-69-ljj">
+                                <rect key="frame" x="9" y="209" width="375" height="264"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Find your favourite places and review it thouroughly, locate and have fun!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZHJ-EK-dPS">
+                                <rect key="frame" x="20" y="439.33333333333331" width="353" height="33.666666666666686"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Gradient" translatesAutoresizingMaskIntoConstraints="NO" id="RXW-t3-JTC">
+                                <rect key="frame" x="0.0" y="0.0" width="413" height="427.66666666666669"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="HDx-Fs-d6w" secondAttribute="trailing" constant="40" id="Dod-al-Jnj"/>
+                            <constraint firstItem="HDx-Fs-d6w" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="40" id="FYs-5j-EFj"/>
+                            <constraint firstItem="4E5-69-ljj" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="9" id="H9a-VX-aQD"/>
+                            <constraint firstItem="ZHJ-EK-dPS" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="J08-jh-AlS"/>
+                            <constraint firstItem="RXW-t3-JTC" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="Nn0-UN-Qsk"/>
+                            <constraint firstItem="RXW-t3-JTC" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="XWg-ko-fde"/>
+                            <constraint firstItem="ZHJ-EK-dPS" firstAttribute="bottom" secondItem="4E5-69-ljj" secondAttribute="bottom" id="baJ-SG-BNK"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="4E5-69-ljj" secondAttribute="trailing" constant="9" id="ni0-Jh-NN7"/>
+                            <constraint firstItem="RXW-t3-JTC" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" constant="20" id="o4z-W2-tHf"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="ZHJ-EK-dPS" secondAttribute="trailing" constant="20" id="qGL-ad-hL3"/>
+                            <constraint firstItem="4E5-69-ljj" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="150" id="xUR-gz-LJj"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="HDx-Fs-d6w" secondAttribute="bottom" constant="40" id="xvA-r5-dOG"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="getStartedButton" destination="HDx-Fs-d6w" id="KTV-sg-k45"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3.8167938931297707" y="3.5211267605633805"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Ftux" width="375" height="264"/>
+        <image name="Gradient" width="375" height="427.66665649414062"/>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
