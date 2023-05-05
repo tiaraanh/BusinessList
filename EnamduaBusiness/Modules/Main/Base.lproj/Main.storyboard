@@ -25,7 +25,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ey0-R3-2Bk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1221" y="60"/>
+            <point key="canvasLocation" x="1180" y="170"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="q5Q-S7-OzW">
@@ -39,26 +39,14 @@
                     <connections>
                         <segue destination="iSP-za-E9V" kind="relationship" relationship="viewControllers" id="kmW-J7-W4u"/>
                         <segue destination="AWd-xt-4ta" kind="relationship" relationship="viewControllers" id="nD6-px-r0P"/>
-                        <segue destination="nkP-tM-eqF" kind="relationship" relationship="viewControllers" id="KXN-OS-le9"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ygV-lP-tzV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="611" y="60"/>
         </scene>
-        <!--NavAccounts-->
-        <scene sceneID="NnI-Pf-GlV">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="Accounts" storyboardName="Account" referencedIdentifier="NavAccounts" id="nkP-tM-eqF" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Account" image="account" id="b6K-8u-Ahp"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2L2-ea-BRc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1169" y="187"/>
-        </scene>
     </scenes>
     <resources>
-        <image name="account" width="24" height="24"/>
         <image name="categories" width="24" height="24"/>
         <image name="home" width="24" height="24"/>
     </resources>

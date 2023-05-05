@@ -20,8 +20,6 @@ class MainViewController: UITabBarController {
         tabBar.tintColor = .black
         tabBar.unselectedItemTintColor = .gray
     }
- 
-
 }
 
 // MARK: - UIViewController

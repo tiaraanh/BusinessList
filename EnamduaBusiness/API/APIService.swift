@@ -7,115 +7,108 @@
 
 import Foundation
 
+@available(iOS 16.0, *)
 class APIService {
-    static let shared: APIService = APIService()
-    private init() { }
+    static let shared = APIService()
     
-    private let baseUrl: String = "https://api.yelp.com/v3/businesses"
-    private let apiKey = "BearerJaTeKVxqBipTVkE2bkFvb-2FiM8lEyQr9rBLJw11zwAggv-6OT0EKdGo6E7d1tNF_T1Z4ZbchBYLe8tf-Glrd--BfVa3eWwtrdGrgV0SUK5gz1ddKgAS88j-sOFLZHYx"
+    let baseURL = URL(string: "https://api.yelp.com/v3/")
+    let apiKey = "JaTeKVxqBipTVkE2bkFvb-2FiM8lEyQr9rBLJw11zwAggv-6OT0EKdGo6E7d1tNF_T1Z4ZbchBYLe8tf-Glrd--BfVa3eWwtrdGrgV0SUK5gz1ddKgAS88j-sOFLZHYx"
+    let endpointBusiness = "businesses"
+    let endpointSearch = "search"
+    let endpointReview = "id/reviews"
     
-    
-    func loadBusiness(completion: @escaping (Result<[BusinessResult], Error>) -> Void) {
-        let urlString = "\(baseUrl)/search?location=NYC&sort_by=best_match&limit=20="
-        if let url = URL(string: urlString) {
-            var request = URLRequest(url: url)
-            request.httpMethod = "GET"
-            request.setValue(apiKey, forHTTPHeaderField: "Authorization")
-            request.setValue("application/json", forHTTPHeaderField: "accept")
-            
-            let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                guard let data = data, error == nil else {
-                    return
-                }
-                do {
-                    let business = try JSONDecoder().decode(BusinessResultResponse.self, from: data)
-                    completion(.success(business.business))
-                } catch {
-                    completion(.failure(error))
-                }
-            }
-            task.resume()
-        }
-    }
-    
-    func loadBusinessResult(with term: String, completion: @escaping (Result<[BusinessResult], Error>) -> Void) {
-        guard let term = term.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
-            else { return }
+    func loadBusiness(searchTerm: String, completion: @escaping (Result<[Business], ErrorResponse>) -> Void ) {
+        guard let url = baseURL else { return completion(.failure(.invalidURL)) }
+        let urlBusinesses = url.appending(path: endpointBusiness)
+        let urlAppend = urlBusinesses.appending(path: endpointSearch)
         
-        let urlString = "\(baseUrl)/search?location=NYC&term=\(term)&sort_by=best_match&limit=20="
-        if let url = URL(string: urlString) {
-            var request = URLRequest(url: url)
-            request.httpMethod = "GET"
-            request.setValue(apiKey, forHTTPHeaderField: "Authorization")
-            request.setValue("application/json", forHTTPHeaderField: "accept")
-            
-            let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                guard let data = data, error == nil else {
-                    return
-                }
-                do {
-                    let businessResult = try JSONDecoder().decode(BusinessResultResponse.self, from: data)
-                    completion(.success(businessResult.business))
-                } catch {
-                    completion(.failure(error))
-                }
-            }
-            task.resume()
-        }
-    }
-    
-    func loadBusinessDetail(with id: String, completion: @escaping (Result<Business, Error>) -> Void) {
-        guard let id = id.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
-        else {return}
+        print("Final URL: \(urlAppend)")
         
-        let urlString = "\(baseUrl)/\(id)"
-        if let url = URL(string: urlString) {
-            var request = URLRequest(url: url)
-            request.httpMethod = "GET"
-            request.setValue(apiKey, forHTTPHeaderField: "Authorization")
-            request.setValue("application/json", forHTTPHeaderField: "accept")
-            
-            let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                guard let data = data, error == nil else {
-                    return
-                }
-                do {
-                    let businessDetail = try JSONDecoder().decode(Business.self, from: data)
-                    completion(.success(businessDetail))
-                } catch {
-                    completion(.failure(error))
-                }
-            }
-            task.resume()
-        }
-    }
-    
-    func loadBusinessReview(with id: String, completion: @escaping (Result<[Review], Error>) -> Void) {
-        guard let id = id.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
-        else {return}
+        var components = URLComponents(url: urlAppend, resolvingAgainstBaseURL: true)
+        components?.queryItems = [
+        URLQueryItem(name: "term", value: searchTerm),
+        URLQueryItem(name: "location", value: "NYC"),
+        URLQueryItem(name: "limit", value: "20")
+        ]
         
-        let urlString = "\(baseUrl)/\(id)/reviews?limit=20&sort_by=yelp=_sort"
-        if let url = URL(string: urlString) {
-            var request = URLRequest(url: url)
-            request.httpMethod = "GET"
-            request.setValue(apiKey, forHTTPHeaderField: "Authorization")
-            request.setValue("application/json", forHTTPHeaderField: "accept")
+        print("Components URL: \(String(describing: components?.url))")
+        
+        guard let componentsURL = components?.url else { return completion(.failure(.invalidURL)) }
+        print("Built URL \(componentsURL)")
+        
+        var request =  URLRequest(url: componentsURL)
+        request.httpMethod = "GET"
+        request.addValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
+        print("Request: \(request)")
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                return completion(.failure(.thrownError(error)))
+            }
             
-            let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                guard let data = data, error == nil else {
-                    return
-                }
-                do {
-                    let businessReviw = try JSONDecoder().decode(ReviewResponse.self, from: data)
-                    completion(.success(businessReviw.review))
-                } catch {
-                    completion(.failure(error))
+            if let response = response as? HTTPURLResponse {
+                if response.statusCode != 200 {
+                    print("BUSINESS STATUS CODE: \(response.statusCode)")
                 }
             }
-            task.resume()
-        }
+            
+            guard let data = data else { return completion(.failure(.noData)) }
+                do {
+                    let apiData = try JSONDecoder().decode(BusinessResponse.self, from: data)
+                    return completion(.success(apiData.businesses))
+                } catch let error {
+                    print(error.localizedDescription)
+                    return completion(.failure(.unableToDecode))
+                }
+        }.resume()
     }
     
+    func loadBusinessReviews(with id: String, completion: @escaping (Result<[ReviewList], ErrorResponse>) -> Void ) {
+        guard let id = id.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {return}
+        guard let url = baseURL else { return completion(.failure(.invalidURL)) }
+        let urlBusinesses = url.appending(path: endpointBusiness)
+        let urlAppend = urlBusinesses.appending(path: endpointReview)
+        
+        print("Final URL: \(urlAppend)")
+        
+        var components = URLComponents(url: urlAppend, resolvingAgainstBaseURL: true)
+        components?.queryItems = [
+        URLQueryItem(name: "limit", value: "20")
+        ]
+        
+        print("Components URL: \(String(describing: components?.url))")
+        
+        guard let componentsURL = components?.url else { return completion(.failure(.invalidURL)) }
+        print("Built URL \(componentsURL)")
+        
+        var request =  URLRequest(url: componentsURL)
+        request.httpMethod = "GET"
+        request.addValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
+        print("Request: \(request)")
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                return completion(.failure(.thrownError(error)))
+            }
+            
+            if let response = response as? HTTPURLResponse {
+                if response.statusCode != 200 {
+                    print("BUSINESS STATUS CODE: \(response.statusCode)")
+                }
+            }
+            
+            guard let data = data else { return completion(.failure(.noData)) }
+                do {
+                    let apiData = try JSONDecoder().decode(ReviewResponse.self, from: data)
+                    return completion(.success(apiData.reviews))
+                } catch let error {
+                    print(error.localizedDescription)
+                    return completion(.failure(.unableToDecode))
+                }
+        }.resume()
+    }
 }
+
+
 
 

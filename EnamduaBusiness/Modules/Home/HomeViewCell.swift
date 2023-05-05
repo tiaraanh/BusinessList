@@ -10,9 +10,8 @@ import UIKit
 class HomeViewCell: UITableViewCell {
     @IBOutlet var thumbImageView: UIImageView!
     @IBOutlet var nameLabel: UILabel!
-    
-    @IBOutlet var reviewCount: UILabel!
-    @IBOutlet var rating: UILabel!
+    @IBOutlet var reviewLabel: UILabel!
+    @IBOutlet var ratingLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,6 +24,13 @@ class HomeViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func updateViews(business: Business?) {
+        guard let business = business else { return }
+        nameLabel.text = business.name
+        ratingLabel.text = "\(business.rating)🌟"
+        reviewLabel.text = "Review: \(business.reviewCount)"
     }
 
 }

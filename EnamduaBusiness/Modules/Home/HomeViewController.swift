@@ -6,27 +6,35 @@
 //
 
 import UIKit
-import Kingfisher
 
-@available(iOS 13.0, *)
+@available(iOS 16.0, *)
 class HomeViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     
     let searchController = UISearchController(searchResultsController: nil)
-    var searchTime: Timer?
     
-    let viewModel = HomeViewModel()
+    var business: [Business?] = [] {
+        didSet {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    var businesses: [Business] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         setup()
+        getLoadBusiness()
     }
     
     func setup() {
         tableView.dataSource = self
-        tableView.delegate = self
+        
+        tableView.rowHeight = 120
         
         definesPresentationContext = true
         navigationItem.searchController = searchController
@@ -34,68 +42,71 @@ class HomeViewController: UIViewController {
         searchController.searchBar.delegate = self
     }
     
-    func searchBusiness(with term: String) {
-        searchTime?.invalidate()
-        searchTime = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { [weak self] (timer) in
-            self?.viewModel.searchBusiness(with: term) { [weak self] (result) in
-                self?.tableView.reloadData()
+    func getLoadBusiness() {
+        APIService.shared.loadBusiness(searchTerm: "restaurants") { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let list):
+                    self.business = list
+                    self.tableView.reloadData()
+                case .failure(let error):
+                    print("Error\(error.localizedDescription)")
+                }
             }
-        })
+        }
     }
 }
 
 // MARK: - UISearchBarDelegate
-@available(iOS 13.0, *)
+@available(iOS 16.0, *)
 extension HomeViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if let text = searchBar.text, text.count >= 3 {
-            searchBusiness(with: text)
+            getLoadBusiness()
         }
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if let text = searchBar.text, text.count >= 3 {
-            searchBusiness(with: text)
+            getLoadBusiness()
         }
     }
 }
 
 // MARK: - UITableViewDataSource
-@available(iOS 13.0, *)
+@available(iOS 16.0, *)
 extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfBusiness
+        return business.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "homeCellId", for: indexPath) as! HomeViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "homeCellId", for: indexPath) as? HomeViewCell,
+              let business = business[indexPath.row]
+        else { return UITableViewCell() }
         
-        let index = indexPath.row
-        cell.nameLabel.text = viewModel.businessName(at: index)
-
+        cell.updateViews(business: business)
+        cell.thumbImageView.load(url: business.imageURL)
         
-        cell.thumbImageView.kf.setImage(with: URL(string: viewModel.businessImageUrl(at: index))) {
-            (result) in
-            switch result {
-            case .success:
-                cell.thumbImageView.contentMode = .scaleAspectFill
-            case .failure:
-                cell.thumbImageView.contentMode = .center
-                cell.thumbImageView.image = UIImage(systemName: "photo")
-            }
-        }
         return cell
     }
     
 }
 
-// MARK: - UITableViewDelegate
-@available(iOS 13.0, *)
-extension HomeViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        showDetailsViewController()
+//MARK: - Navigation
+@available(iOS 16.0, *)
+extension HomeViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "detailsDestination" {
+            guard let destination = segue.destination as? DetailsViewController,
+                  let cell = sender as? HomeViewCell,
+                  let indexPath = self.tableView.indexPath(for: cell),
+                  let businesses = business[indexPath.row]
+            else { return }
+            
+            destination.business = businesses
+        }
     }
     
-    
 }
+

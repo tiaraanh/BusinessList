@@ -29,7 +29,4 @@ class FtuxViewController: UIViewController {
     @IBAction func getStartedButton(_ sender: Any) {
         showMainViewController()
     }
-    
-
-    
 }
