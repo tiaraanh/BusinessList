@@ -14,15 +14,6 @@ class CategoriesViewController: UIViewController {
     private let inset: CGFloat = 20
     private let spacing: CGFloat = 12
     
-    var businessess: [Business?] = [] {
-        didSet {
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-                print(self.businessess.count)
-            }
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -42,10 +33,6 @@ class CategoriesViewController: UIViewController {
         collectionViewLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         collectionView.collectionViewLayout = collectionViewLayout
     }
-    
-    
-
-  
 
 }
 //MARK: - CollectionViewDataSource

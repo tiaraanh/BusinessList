@@ -63,50 +63,6 @@ class APIService {
         }.resume()
     }
     
-    func loadBusinessReviews(with id: String, completion: @escaping (Result<[ReviewList], ErrorResponse>) -> Void ) {
-        guard let id = id.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {return}
-        guard let url = baseURL else { return completion(.failure(.invalidURL)) }
-        let urlBusinesses = url.appending(path: endpointBusiness)
-        let urlAppend = urlBusinesses.appending(path: endpointReview)
-        
-        print("Final URL: \(urlAppend)")
-        
-        var components = URLComponents(url: urlAppend, resolvingAgainstBaseURL: true)
-        components?.queryItems = [
-        URLQueryItem(name: "limit", value: "20")
-        ]
-        
-        print("Components URL: \(String(describing: components?.url))")
-        
-        guard let componentsURL = components?.url else { return completion(.failure(.invalidURL)) }
-        print("Built URL \(componentsURL)")
-        
-        var request =  URLRequest(url: componentsURL)
-        request.httpMethod = "GET"
-        request.addValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
-        print("Request: \(request)")
-        
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
-            if let error = error {
-                return completion(.failure(.thrownError(error)))
-            }
-            
-            if let response = response as? HTTPURLResponse {
-                if response.statusCode != 200 {
-                    print("BUSINESS STATUS CODE: \(response.statusCode)")
-                }
-            }
-            
-            guard let data = data else { return completion(.failure(.noData)) }
-                do {
-                    let apiData = try JSONDecoder().decode(ReviewResponse.self, from: data)
-                    return completion(.success(apiData.reviews))
-                } catch let error {
-                    print(error.localizedDescription)
-                    return completion(.failure(.unableToDecode))
-                }
-        }.resume()
-    }
 }
 
 

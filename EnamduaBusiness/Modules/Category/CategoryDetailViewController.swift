@@ -10,69 +10,80 @@ import MapKit
 
 @available(iOS 16.0, *)
 class CategoryDetailViewController: UIViewController {
-    
-// MARK: - Properties
-    @IBOutlet var thumbImageView: UIImageView!
+    // MARK: - Properties
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var addressLabel: UILabel!
     @IBOutlet var priceLabel: UILabel!
     @IBOutlet var ratingLabel: UILabel!
     @IBOutlet var availableLabel: UILabel!
-    
-    @IBOutlet var userNameLabel: UILabel!
+    @IBOutlet var phoneLabel: UILabel!
     @IBOutlet var userReviewLabel: UILabel!
-    @IBOutlet var userRatingLabel: UILabel!
     
+    @IBOutlet var collectionView: UICollectionView!
     @IBOutlet var mapView: MKMapView!
     
+    var businessArray: [Business] = []
     var business: Business?
-    var reviews: ReviewList?
-    var review: [ReviewList] = [ReviewList]()
-    public var businessId: String = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
         setup()
-        getLoadReviews()
-        renderViews()
-        updateReviews()
+        getLoadBusiness()
+        updateViews()
         available()
         updateMaps()
+        
+        let reviewTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(userReview(tapGestureRecognizer:)))
+            userReviewLabel.isUserInteractionEnabled = true
+            userReviewLabel.addGestureRecognizer(reviewTapGestureRecognizer)
     }
     
 // MARK: - Functions
     func setup() {
-        thumbImageView.contentMode = .scaleAspectFill
-        thumbImageView.layer.cornerRadius = 20
-        thumbImageView.layer.masksToBounds = true
-        
         mapView.layer.cornerRadius = 20
         mapView.layer.masksToBounds = true
         mapView.isScrollEnabled = false
         mapView.delegate = self
+        
+        collectionView.dataSource = self
     }
     
-    func renderViews() {
+    func getLoadBusiness() {
+        APIService.shared.loadBusiness(searchTerm: "restaurants") { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let list):
+                    self.businessArray = list
+                    self.collectionView.reloadData()
+                case .failure(let error):
+                    print("Error\(error.localizedDescription)")
+                }
+            }
+        }
+    }
+    
+    func updateViews() {
         guard let business = business else { return }
         print("business contains value \(business)")
-        thumbImageView.load(url: business.imageURL)
         nameLabel.text = business.name
         ratingLabel.text = "\(business.rating)🌟"
         priceLabel.text = business.price
+        phoneLabel.text = business.displayPhone
         
         let displayAddress = business.location?.displayAddress
         let searchAddress = displayAddress?.joined()
         addressLabel.text = searchAddress
     }
     
-    func updateReviews() {
-        guard let reviews = reviews else { return }
-        print("review contains value \(reviews)")
-        userNameLabel.text = reviews.user?.name
-        userRatingLabel.text = "\(reviews.rating)🌟"
-        userReviewLabel.text = reviews.text
+    @objc func userReview(tapGestureRecognizer: UITapGestureRecognizer) {
+        _ = tapGestureRecognizer.view as! UILabel
+        guard let business = business,
+              let url = URL(string: business.url)
+        else { return }
+        print(business.url)
+        UIApplication.shared.open(url)
     }
     
     func available() {
@@ -101,18 +112,6 @@ class CategoryDetailViewController: UIViewController {
         mapView.setRegion(region, animated: true)
     }
     
-    func getLoadReviews() {
-        APIService.shared.loadBusinessReviews(with: businessId) { result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let list):
-                    self.review = list
-                case .failure(let error):
-                    print("Error\(error.localizedDescription)")
-                }
-            }
-        }
-    }
 }
 
 // MARK: - MKMapViewDelegate
@@ -139,5 +138,24 @@ extension CategoryDetailViewController: MKMapViewDelegate {
         let coordinate = CLLocationCoordinate2DMake(latitude ?? 0, longitude ?? 0)
         let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate))
         mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving])
+    }
+}
+
+//MARK: - CollectionViewDataSource
+@available(iOS 16.0, *)
+extension CategoryDetailViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print("business count: \(businessArray.count)")
+        return businessArray.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryDetailsCellId", for: indexPath) as? CategoryDetailsViewCell
+        else { return UICollectionViewCell() }
+        
+        let business = businessArray[indexPath.row]
+        cell.thumbImageView.load(url: business.imageURL)
+        
+        return cell
     }
 }

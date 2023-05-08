@@ -24,6 +24,5 @@ class CategoriesViewCell: UICollectionViewCell {
     func updateViews(category: Category) {
         thumbImageView.image = UIImage(named: category.imageName)
         nameLabel.text = category.title
-        
     }
 }

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0C9574D502F53FAAF8DFF744 /* Pods_EnamduaBusiness.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82CE12B75920056088EF879A /* Pods_EnamduaBusiness.framework */; };
+		940285F82A050ABF00CC217B /* CategoryDetailsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940285F72A050ABF00CC217B /* CategoryDetailsViewCell.swift */; };
 		9434225929FBE1D10084D3D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9434225829FBE1D10084D3D3 /* AppDelegate.swift */; };
 		9434225B29FBE1D10084D3D3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9434225A29FBE1D10084D3D3 /* SceneDelegate.swift */; };
 		9434226029FBE1D10084D3D3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9434225E29FBE1D10084D3D3 /* Main.storyboard */; };
@@ -22,7 +22,6 @@
 		9434228629FBF27E0084D3D3 /* Ftux.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9434228529FBF27E0084D3D3 /* Ftux.storyboard */; };
 		9434228829FC1CC20084D3D3 /* HomeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9434228729FC1CC20084D3D3 /* HomeViewCell.swift */; };
 		9434228C29FC256E0084D3D3 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9434228B29FC256E0084D3D3 /* APIService.swift */; };
-		94A377612A03797F00892074 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A377602A03797F00892074 /* Review.swift */; };
 		94B52C742A0288C000A8AA2A /* CategoriesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B52C732A0288C000A8AA2A /* CategoriesViewCell.swift */; };
 		94B52C772A02A56C00A8AA2A /* CategoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B52C762A02A56C00A8AA2A /* CategoryListViewController.swift */; };
 		94B52C792A02A5BF00A8AA2A /* CategoryListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B52C782A02A5BF00A8AA2A /* CategoryListViewCell.swift */; };
@@ -32,10 +31,13 @@
 		94DEDDC12A01050B000AD38B /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DEDDC02A01050B000AD38B /* Category.swift */; };
 		94DEDDC42A010EBF000AD38B /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DEDDC32A010EBF000AD38B /* ViewExtensions.swift */; };
 		94E95F5C29FEBA23004B35A8 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E95F5B29FEBA23004B35A8 /* DetailsViewController.swift */; };
+		E2D76C8EACD32BFE275D6F2A /* Pods_EnamduaBusiness.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD70EB5E721161EF4121E551 /* Pods_EnamduaBusiness.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		82CE12B75920056088EF879A /* Pods_EnamduaBusiness.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EnamduaBusiness.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3ED60AF9DE502840DF886B25 /* Pods-EnamduaBusiness.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnamduaBusiness.release.xcconfig"; path = "Target Support Files/Pods-EnamduaBusiness/Pods-EnamduaBusiness.release.xcconfig"; sourceTree = "<group>"; };
+		5C758249A9CFACDB8F6DB741 /* Pods-EnamduaBusiness.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnamduaBusiness.debug.xcconfig"; path = "Target Support Files/Pods-EnamduaBusiness/Pods-EnamduaBusiness.debug.xcconfig"; sourceTree = "<group>"; };
+		940285F72A050ABF00CC217B /* CategoryDetailsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailsViewCell.swift; sourceTree = "<group>"; };
 		9434225529FBE1D10084D3D3 /* EnamduaBusiness.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EnamduaBusiness.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9434225829FBE1D10084D3D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9434225A29FBE1D10084D3D3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -52,7 +54,6 @@
 		9434228529FBF27E0084D3D3 /* Ftux.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Ftux.storyboard; sourceTree = "<group>"; };
 		9434228729FC1CC20084D3D3 /* HomeViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewCell.swift; sourceTree = "<group>"; };
 		9434228B29FC256E0084D3D3 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
-		94A377602A03797F00892074 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		94B52C732A0288C000A8AA2A /* CategoriesViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewCell.swift; sourceTree = "<group>"; };
 		94B52C762A02A56C00A8AA2A /* CategoryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListViewController.swift; sourceTree = "<group>"; };
 		94B52C782A02A5BF00A8AA2A /* CategoryListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListViewCell.swift; sourceTree = "<group>"; };
@@ -62,8 +63,7 @@
 		94DEDDC02A01050B000AD38B /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		94DEDDC32A010EBF000AD38B /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
 		94E95F5B29FEBA23004B35A8 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
-		FDD3F5965141DFAEA1F3FBB3 /* Pods-EnamduaBusiness.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnamduaBusiness.debug.xcconfig"; path = "Target Support Files/Pods-EnamduaBusiness/Pods-EnamduaBusiness.debug.xcconfig"; sourceTree = "<group>"; };
-		FED4AC8FC0F1ED46CF498612 /* Pods-EnamduaBusiness.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnamduaBusiness.release.xcconfig"; path = "Target Support Files/Pods-EnamduaBusiness/Pods-EnamduaBusiness.release.xcconfig"; sourceTree = "<group>"; };
+		FD70EB5E721161EF4121E551 /* Pods_EnamduaBusiness.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EnamduaBusiness.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,17 +71,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C9574D502F53FAAF8DFF744 /* Pods_EnamduaBusiness.framework in Frameworks */,
+				E2D76C8EACD32BFE275D6F2A /* Pods_EnamduaBusiness.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		606476D25D9D9C5D8F365F88 /* Frameworks */ = {
+		43AE0198980205BF4F84C8FE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				82CE12B75920056088EF879A /* Pods_EnamduaBusiness.framework */,
+				FD70EB5E721161EF4121E551 /* Pods_EnamduaBusiness.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -91,8 +91,8 @@
 			children = (
 				9434225729FBE1D10084D3D3 /* EnamduaBusiness */,
 				9434225629FBE1D10084D3D3 /* Products */,
-				A26FBF39DA93419CE4DF336B /* Pods */,
-				606476D25D9D9C5D8F365F88 /* Frameworks */,
+				9776D528FE613CAE3E46130D /* Pods */,
+				43AE0198980205BF4F84C8FE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -125,7 +125,6 @@
 			children = (
 				9434227729FBE9E60084D3D3 /* Main */,
 				9434227129FBE7210084D3D3 /* Category */,
-				94B52C752A02A42800A8AA2A /* Details */,
 				9434227029FBE7190084D3D3 /* Home */,
 				9434228229FBF2650084D3D3 /* Ftux */,
 			);
@@ -137,7 +136,6 @@
 			children = (
 				94DEDDB82A00F806000AD38B /* Business.swift */,
 				94DEDDC02A01050B000AD38B /* Category.swift */,
-				94A377602A03797F00892074 /* Review.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -157,6 +155,7 @@
 				9434227E29FBEAFA0084D3D3 /* Home.storyboard */,
 				9434228029FBEB030084D3D3 /* HomeViewController.swift */,
 				9434228729FC1CC20084D3D3 /* HomeViewCell.swift */,
+				94E95F5B29FEBA23004B35A8 /* DetailsViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -170,6 +169,7 @@
 				94B52C762A02A56C00A8AA2A /* CategoryListViewController.swift */,
 				94B52C782A02A5BF00A8AA2A /* CategoryListViewCell.swift */,
 				94B52C7A2A02BEF500A8AA2A /* CategoryDetailViewController.swift */,
+				940285F72A050ABF00CC217B /* CategoryDetailsViewCell.swift */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -192,14 +192,6 @@
 			path = Ftux;
 			sourceTree = "<group>";
 		};
-		94B52C752A02A42800A8AA2A /* Details */ = {
-			isa = PBXGroup;
-			children = (
-				94E95F5B29FEBA23004B35A8 /* DetailsViewController.swift */,
-			);
-			path = Details;
-			sourceTree = "<group>";
-		};
 		94DEDDC22A010EAB000AD38B /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -208,12 +200,13 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		A26FBF39DA93419CE4DF336B /* Pods */ = {
+		9776D528FE613CAE3E46130D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				FDD3F5965141DFAEA1F3FBB3 /* Pods-EnamduaBusiness.debug.xcconfig */,
-				FED4AC8FC0F1ED46CF498612 /* Pods-EnamduaBusiness.release.xcconfig */,
+				5C758249A9CFACDB8F6DB741 /* Pods-EnamduaBusiness.debug.xcconfig */,
+				3ED60AF9DE502840DF886B25 /* Pods-EnamduaBusiness.release.xcconfig */,
 			);
+			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -228,15 +221,12 @@
 				9434225129FBE1D10084D3D3 /* Sources */,
 				9434225229FBE1D10084D3D3 /* Frameworks */,
 				9434225329FBE1D10084D3D3 /* Resources */,
-				3ADEFFF23D9E2AE4E6AF9805 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = EnamduaBusiness;
-			packageProductDependencies = (
-			);
 			productName = EnamduaBusiness;
 			productReference = 9434225529FBE1D10084D3D3 /* EnamduaBusiness.app */;
 			productType = "com.apple.product-type.application";
@@ -265,8 +255,6 @@
 				Base,
 			);
 			mainGroup = 9434224C29FBE1D10084D3D3;
-			packageReferences = (
-			);
 			productRefGroup = 9434225629FBE1D10084D3D3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -293,23 +281,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3ADEFFF23D9E2AE4E6AF9805 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-EnamduaBusiness/Pods-EnamduaBusiness-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-EnamduaBusiness/Pods-EnamduaBusiness-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EnamduaBusiness/Pods-EnamduaBusiness-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		C273244A7784BAEB699AE237 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -342,6 +313,7 @@
 				9434227929FBEA180084D3D3 /* MainViewController.swift in Sources */,
 				9434228829FC1CC20084D3D3 /* HomeViewCell.swift in Sources */,
 				9434225929FBE1D10084D3D3 /* AppDelegate.swift in Sources */,
+				940285F82A050ABF00CC217B /* CategoryDetailsViewCell.swift in Sources */,
 				94B52C7B2A02BEF500A8AA2A /* CategoryDetailViewController.swift in Sources */,
 				94E95F5C29FEBA23004B35A8 /* DetailsViewController.swift in Sources */,
 				9434227B29FBEA560084D3D3 /* CategoriesViewController.swift in Sources */,
@@ -350,7 +322,6 @@
 				94DEDDB72A00F795000AD38B /* ErrorResponse.swift in Sources */,
 				94DEDDC42A010EBF000AD38B /* ViewExtensions.swift in Sources */,
 				9434225B29FBE1D10084D3D3 /* SceneDelegate.swift in Sources */,
-				94A377612A03797F00892074 /* Review.swift in Sources */,
 				94B52C792A02A5BF00A8AA2A /* CategoryListViewCell.swift in Sources */,
 				94DEDDB92A00F806000AD38B /* Business.swift in Sources */,
 				9434228129FBEB030084D3D3 /* HomeViewController.swift in Sources */,
@@ -498,7 +469,7 @@
 		};
 		9434226A29FBE1D20084D3D3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FDD3F5965141DFAEA1F3FBB3 /* Pods-EnamduaBusiness.debug.xcconfig */;
+			baseConfigurationReference = 5C758249A9CFACDB8F6DB741 /* Pods-EnamduaBusiness.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -531,7 +502,7 @@
 		};
 		9434226B29FBE1D20084D3D3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FED4AC8FC0F1ED46CF498612 /* Pods-EnamduaBusiness.release.xcconfig */;
+			baseConfigurationReference = 3ED60AF9DE502840DF886B25 /* Pods-EnamduaBusiness.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

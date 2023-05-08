@@ -26,7 +26,7 @@ struct Business: Decodable {
     var price: String?
     var location: Location?
     var phone: String
-    var dispalyPhone: String
+    var displayPhone: String
     
     enum CodingKeys: String, CodingKey {
         case id = "id"
@@ -43,7 +43,7 @@ struct Business: Decodable {
         case price = "price"
         case location = "location"
         case phone = "phone"
-        case dispalyPhone = "display_phone"
+        case displayPhone = "display_phone"
         
     }
     init(from decoder: Decoder) throws {
@@ -62,7 +62,7 @@ struct Business: Decodable {
         price = try container.decodeIfPresent(String.self, forKey: .price) ?? ""
         location = try container.decodeIfPresent(Location.self, forKey: .location)
         phone = try container.decodeIfPresent(String.self, forKey: .phone) ?? ""
-        dispalyPhone = try container.decodeIfPresent(String.self, forKey: .dispalyPhone) ?? ""
+        displayPhone = try container.decodeIfPresent(String.self, forKey: .displayPhone) ?? ""
     }
     
 }

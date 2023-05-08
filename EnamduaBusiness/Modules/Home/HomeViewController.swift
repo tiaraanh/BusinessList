@@ -21,8 +21,6 @@ class HomeViewController: UIViewController {
         }
     }
     
-    var businesses: [Business] = []
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -97,16 +95,16 @@ extension HomeViewController: UITableViewDataSource {
 @available(iOS 16.0, *)
 extension HomeViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "detailsDestination" {
-            guard let destination = segue.destination as? DetailsViewController,
-                  let cell = sender as? HomeViewCell,
-                  let indexPath = self.tableView.indexPath(for: cell),
-                  let businesses = business[indexPath.row]
-            else { return }
-            
-            destination.business = businesses
+        if segue.identifier == "detailHomeDestination" {
+            guard let indexPath = tableView.indexPathForSelectedRow,
+                  let destination = segue.destination as? DetailsViewController
+                    else { return }
+
+            let selectedBusiness = business[indexPath.row]
+            destination.business = selectedBusiness
         }
     }
     
 }
+
 

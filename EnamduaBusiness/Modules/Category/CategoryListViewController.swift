@@ -12,8 +12,7 @@ class CategoryListViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     
     var categories: Category?
-    var business: [Business] = []
-    var businesses: Business?
+    var businessArray: [Business] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +33,7 @@ class CategoryListViewController: UIViewController {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let business):
-                    self.business = business
+                    self.businessArray = business
                     self.tableView.reloadData()
                 case .failure(let error):
                     print("Error in \(#function) : \(error.localizedDescription) \n--\n \(error)")
@@ -48,16 +47,16 @@ class CategoryListViewController: UIViewController {
 @available(iOS 16.0, *)
 extension CategoryListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return business.count
+        print("business count: \(businessArray.count)")
+        return businessArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "categoryListCellId", for: indexPath) as? CategoryListViewCell,
-              
               let category = categories
         else { return UITableViewCell() }
         
-        let business = business[indexPath.row]
+        let business = businessArray[indexPath.row]
         
         cell.titleLabel.text = business.name
         cell.ratingLabel.text = "\(business.rating)🌟"
@@ -79,9 +78,8 @@ extension CategoryListViewController {
                   let destination = segue.destination as? CategoryDetailViewController
             else { return }
 
-            let business = business[indexPath.row]
-
-            destination.business = business
+            let selectedBusiness = businessArray[indexPath.row]
+            destination.business = selectedBusiness
         }
     }
 }
