@@ -12,7 +12,8 @@ class APIService {
     static let shared = APIService()
     
     let baseURL = URL(string: "https://api.yelp.com/v3/")
-    let apiKey = "JaTeKVxqBipTVkE2bkFvb-2FiM8lEyQr9rBLJw11zwAggv-6OT0EKdGo6E7d1tNF_T1Z4ZbchBYLe8tf-Glrd--BfVa3eWwtrdGrgV0SUK5gz1ddKgAS88j-sOFLZHYx"
+    // use your own API Key on "https://www.yelp.com/login?return_url=%2Fdevelopers%2Fv3%2Fmanage_app"
+    let apiKey = ""
     let endpointBusiness = "businesses"
     let endpointSearch = "search"
     let endpointReview = "id/reviews"
